@@ -1,0 +1,90 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tabularx}
+
+\newcommand{\chameleon}{ChameleonIDE}
+\newcommand{\pjs}[1]{\textcolor{blue}{\textsc{Pjs}: #1}}
+\newcommand{\jw}[1]{\textcolor{orange}{\textsc{JW}: #1}}
+\newcommand{\td}[1]{\textcolor{teal}{\textsc{td}: #1}}
+\newcommand{\tf}[1]{\textcolor{magenta}{\textsc{tf}: #1}}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{\chameleon{}: Untangling Type Errors Through Interactive
+  Visualization and Exploration
+}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+\and
+\IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address or ORCID}
+}
+
+
+\maketitle
+
+\begin{abstract}
+In recent years, many programming communities have been undergoing a transition to writing strongly typed programs. To benefit from type-safe codebases, programmers must first overcome the challenge of resolving type errors where text messages can often be unhelpful and misleading. Modern programming tools do not concentrate on making type errors easy to understand. We demonstrate \chameleon{}, a type debugging tool capable of displaying the full context of a type error and allowing programmers to search for where the type error actually occurs based on their prior knowledge and to incrementally verify their assumptions. \chameleon{} was developed through a user-centred, iterative process with four participatory experiments. Through the experiments, we showed that programmers using \chameleon{} fix type errors faster than traditional text-based error messages.  This difference is more significant in harder tasks. Further, programmers actively using \chameleon{} interactive features are shown to be more efficient in fixing type errors than simply reading the type error output.
+\end{abstract}
+
+\begin{IEEEkeywords}
+component, formatting, style, styling, insert
+\end{IEEEkeywords}
+
+
+
+\input{sections/introduction.tex}
+\input{sections/related-work.tex}
+\input{sections/chameleon.tex}
+\input{sections/walkthrough.tex}
+\input{sections/evaluation.tex}
+\input{sections/discussion.tex}
+\input{sections/conclusion.tex}
+
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+
+
+\end{document}
