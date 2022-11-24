@@ -8,14 +8,21 @@ From the results of user studies 1 and 2, we observed that the choice of debuggi
 From the results of user studies 3 and 4, we found that programmers who use interactive tool fix type errors faster than the ones who passively read the error output. This difference is stronger in harder tasks. We speculate that one factor of this result is that  \chameleon{} helps to develop debugging plans. We observed that when working with \chameleon{}, programmers form different debugging tactics to attack the problem. Among the high interactivity participants in user study 4, some programmers cycle through deduction steps as a guide to reading source code; some programmers navigate to both ends of the deduction steps where types are normally grounded and concrete. In contrast, minimal interactive participants generally form more similar plans, including carefully reading the program text and manually annotating expressions based on their understanding of the program.
 
 
-\begin{lstlisting}[language=Haskell, float, caption={
-    In this simple program, \chameleon{} report 
-    the error happened in \texttt{f} and \texttt{z}.
-}, label={listing:fz}]
+% \begin{lstlisting}[language=Haskell, float, caption={
+%     In this simple program, \chameleon{} report 
+%     the error happened in \texttt{f} and \texttt{z}.
+% }, label={listing:fz}]
+% f z     
+%     | z == 3 = False
+%     | z == '4' = True
+% \end{lstlisting}
+
+
+\begin{minted}{haskell}
 f z     
     | z == 3 = False
     | z == '4' = True
-\end{lstlisting}
+\end{minted}
 
 We speculate another factor of the effectiveness \chameleon{} interactive debugging tools is they help programmers effectively chunk intermediate information. With the program showing in the listing \ref{listing:fz}, \chameleon{} offers two candidate expressions: \texttt{f} can be typed as \texttt{Int -> Bool} or \texttt{Char -> Bool}; \texttt{z} can be typed as \texttt{Int} or \texttt{Char}. Although, in theory, these two statements are to the same effect, programmers are often required to compute the latter from the former or vice versa. And this computation may carry out multiple layers. Programmers have to remember all the intermediate types and their reasoning throughout such mental gymnastics. Assisted by candidate expression cards and deduction steps, this intermediate information is preserved on screen and can be retrieved anytime. This may provide a positive effect in helping programmers manage cognitive load and free up working-memory space for high-level thinking.
 
