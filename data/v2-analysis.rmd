@@ -1,0 +1,168 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(lubridate)
+events <- read_csv("v2-data.csv") %>%
+  mutate(time = as_datetime(time), task = as.integer(task)) %>%
+  arrange(time)
+```
+
+```{r message=FALSE}
+event_names <- events %>% distinct(event_name)
+
+all_participants <- events %>%
+  distinct(participant_id) %>%
+  .$participant_id
+
+completed <- events %>%
+  filter(task == 8, event_name %in% c("complete", "skip")) %>%
+  distinct(participant_id) %>%
+  filter(! participant_id %in% c()) %>% 
+  .$participant_id
+
+starts <- events %>%
+  filter(participant_id %in% completed) %>%
+  filter(event_name == "start") %>%
+  group_by(participant_id, task) %>%
+  summarise(start_time = first(time))
+
+ends <- events %>% 
+  filter(participant_id %in% completed) %>%
+  filter(event_name %in% c("complete", "skip")) %>%
+  group_by(participant_id, task) %>%
+  summarise(finish_time = last(time))
+
+durations <- events %>%
+  filter(participant_id %in% completed) %>%
+  left_join(starts, by=c("participant_id", 'task')) %>%
+  left_join(ends, by=c("participant_id", 'task')) %>%
+  mutate(duration = as.numeric(finish_time - start_time))
+
+
+durations |> group_by(task) |> summarise(
+  avg_time=mean(duration),
+  med_time= median(duration),
+  min_time = min(duration),
+  max_time=max(duration),
+  sd_time = sd(duration))
+  
+
+attemps <- events %>%
+  filter(participant_id %in% completed) %>% 
+  filter(event_name == "attempts")
+  
+```
+
+```{r}
+
+err_left <- function (n, m, s) {
+  return (m - qt(0.975,df=n-1)*s/sqrt(n))
+}
+
+err_right <- function (n, m, s) {
+  return (m + qt(0.975,df=n-1)*s/sqrt(n))
+}
+
+errors <- durations |>
+  group_by(task, interaction_group) %>%
+  summarise(
+    l = err_left(n(), mean(duration), sd(duration)),
+    m = mean(duration),
+    u = err_right(n(), mean(duration), sd(duration))
+  )
+
+durations |>
+  ggplot() +
+  geom_bar(
+    durations,
+    mapping = aes(x = factor(task),
+                  y = duration,
+                  fill = interaction_group),
+    position = "dodge",
+    stat = "summary",
+    fun = "mean"
+  ) +
+  geom_errorbar(
+    data = errors,
+    mapping = aes(
+      x = factor(task),
+      y = m,
+      ymin = l,
+      ymax = u,
+      group = interaction_group
+    ),
+    position = position_dodge(0.9),
+    alpha=0.5,
+    width=0.6
+  ) +
+  scale_x_discrete(expand = c(0,0))  +
+  scale_y_continuous(expand = c(0,0)) + 
+  theme_bw() +
+  theme(
+    panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank(), 
+    panel.border = element_blank(),
+    axis.line.y = element_line(colour = "black"),
+    axis.ticks.x = element_blank(),
+    legend.position = "bottom",
+    plot.title = element_text(size = 15),
+    axis.title = element_text(size = 14),
+    text = element_text(size = 14)
+    )
+
+# ggsave("r2-data.pdf", device = "pdf", plot = last_plot(), units ="mm", width = 210)
+
+  
+```
+
+```{}
+```
+
+```{r}
+
+```
+
+```{r}
+events |> 
+  group_by(participant_id) |>
+  summarise(runtime = max(time) - min(time)) |>
+  summarise(
+    mean_runtime = mean(runtime),
+    median_runtime = median(runtime)
+    )
+```
+
+```{r}
+events |>
+  ggplot(mapping=aes(x=time)) +
+  geom_density()
+  
+  
+```
+
+```{r}
+mode_level <- c('Basic', 'Balanced', 'Advanced')
+reverse_level <- c('Advanced', 'Balanced', 'Basic')
+events |>
+  filter(event_name %in% c('start', 'complete', 'skip')) |>
+  group_by(task, participant_id) |>
+  arrange(time, .by_group = TRUE) |>
+  summarise(
+    start_mode=first(mode),
+    finish_mode=last(mode)
+  ) |> 
+  group_by(start_mode, finish_mode) |>
+  summarise(count=n()) |>
+  ggplot(aes(factor(finish_mode, level=mode_level),
+             factor(start_mode, level=reverse_level))) +
+  geom_tile(aes(fill=count)) +
+  geom_text(aes(label=count)) +
+  scale_fill_distiller(direction = 1, palette = 3)
+
+  
+```
