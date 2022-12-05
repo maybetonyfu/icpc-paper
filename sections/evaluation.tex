@@ -1,6 +1,6 @@
 \section{Evaluation}
 
-Three studies were conducted to answer new research questions or rephrase existing ones. These studies are grouped into 2 phases, and each tested a different version of \chameleon{} with human participants. The number of participants and their Haskell experience, as well as key research questions and conclusions, were shown in figure \ref{fig:timeline}. 
+Three studies were conducted to answer new research questions or rephrase existing ones. These studies are grouped into 2 phases, and each tested a different version of \chameleon{} with human participants. The number of participants and their Haskell experience, as well as key research questions and conclusions, were shown in figure \ref{fig:timeline}. \todo{Explain was a user study of the tool with practitioners?}
 
 
 \begin{figure*}
@@ -15,10 +15,11 @@ Three studies were conducted to answer new research questions or rephrase existi
 
 The recruiting channel we used was the social news aggregation website Reddit. Specifically, our user study advertisements were posted in the Haskell programming language community \textit{r/haskell} and a general "programming language" focused community \textit{r/programminglanguages}. Recruiting from social media allowed us to access a more diverse demographic that better represent the true population of Haskell programmers. The participation is fully anonymized. The detailed ethical implications of these experiments are reviewed and approved by the IRB of the institution of the authors.
 
-One consequence of our recruiting approach is it is harder for previous participants to enter a later study. To minimize the lurking variable of previous experience, we use new code challenges in every study and conduct trial runs in every study to bring new participants up to speed.
+\todo{Need more detail on participants - years experience, male vs female, etc}
+
 
 \subsubsection*{\textbf{Experiment setting}}
-The experiments took place remotely and unsupervised. Participants took the study online via a web browser and at the physical venue of their choosing. All user studies use a web-based debugging environment developed by the authors. Conducting the studies online helped us avoid variation when performing tasks in unfamiliar places and using different setups. The downside is that intervening when users encounter usability issues mid-study is impossible. To ensure there is no major usability issue that could lower the quality of data collection, we conducted cognitive walkthroughs and sandbox pilots before running each study.
+The experiments took place remotely and unsupervised. Participants took the study online via a web browser and at the physical venue of their choosing. All user studies use a web-based debugging environment developed by the authors. Conducting the studies online helped us avoid variation when performing tasks in unfamiliar places and using different setups. 
 
 
 \subsubsection*{\textbf{Training and group assignment}}
@@ -30,17 +31,16 @@ All the user studies used a within-subject design to evaluate the effectiveness 
 \subsubsection*{\textbf{Measurement}}
 Time is measured from the start of each task to the first time the program is successfully type-checked and also passes all the functional tests. The data is automatically recorded by the online debugging environment. To not introduce a barrier to completing the study, every task can be skipped if the participant made three failed attempts or is stuck for over 1 minute on the task.
 
-After completing all the tasks, users are prompted to complete a debriefing survey. The survey questions include their Haskell experience and feedback on the tools and feature set participants used during the study.
+After completing all the tasks, participants are prompted to complete a debriefing survey. The survey questions include their Haskell experience and feedback on the tools and feature set participants used during the study.
 
-We used a browser session recording tool~\cite{openreplay_openreplay_2022} to record the study sessions. This provides us with a "poor man's video recording"  to find usability issues in the study and recognize general patterns. The only reason this format is inferior is that the recording technology does not provide a high enough sampling rate for us to be confidently used for rigorous analysis.
+We used a browser session recording tool~\cite{openreplay_openreplay_2022} to record the study sessions. This provides us with a "poor man's video recording" to identify usability issues in the study and to recognize general patterns. The reason we found this format inferior is that the recording technology does not provide a high enough sampling rate for us to be confidently used for rigorous analysis.
 
-One other use of the session recording is for outlier trimming.   identify participants who left the computer for a long period of time. We first ran a statistical analysis to identify the long gap (2sd) between program logs for each participant. Then, we manually checked with the session recording to verify there was actually no user input (mouse movement, scrolling). 
+One use of the session recording is for outlier trimming.  We identify participants who left the computer for an extended period of time. We first ran a statistical analysis to identify the long gap (2 standard deviations) between actions using program logs for each participant. Then, we manually checked with the session recording to verify there was actually no user input (mouse movement, scrolling). 
 
 \subsection{\chameleon{} Human Studies}
 
-
 \subsubsection{\textbf{\chameleon{} 1}}  
-\chameleon{} 1 is an earlier iteration of \chameleon{} development. This version features the type inference engine that recovers most concrete types after type errors occur and a minimal set of debugging features. Key features in \chameleon{} 1 include showing two alternative types for the ill-typed expression,  providing all possible locations that contribute to the type error, and dividing possible locations into two groups based on which alternative type can be inferred. In terms of features, \chameleon{} 1 is equivalent to \chameleon{} 2 in basic mode. 
+\chameleon{} 1 is an earlier iteration of \chameleon{} development. This version features the type inference engine that recovers most concrete types after type errors occur and a minimal set of debugging features. Key features in \chameleon{} 1 include showing two (or more) alternative types, showing all possible error locations, dividing possible error locations into groups based on alternative types, and concrete type restoration. In short, \chameleon{} 1 is equivalent to \chameleon{} 2 set to basic mode. 
 
 % \begin{figure}[h]
 %     \centering
@@ -51,15 +51,20 @@ One other use of the session recording is for outlier trimming.   identify parti
 %     \label{fig:chameleon-v1}
 % \end{figure}
 
-Two user studies (1a & 1b) were conducted to compare the effectiveness of solving type errors using \chameleon{} 1 and GHC compiler error messages. We choose GHC compiler error messages as the baseline because it is the canonical tool for working with type errors in Haskell. Although high-level tools like Haskell Language Server exist, they generally relay the GHC error messages verbatim. The procedure of these studies is shown in figure \ref{fig:procedure-1}.
+Two  studies (1a \& 1b) were conducted to compare the effectiveness of solving type errors using \chameleon{} 1 and GHC compiler error messages. We choose GHC compiler error messages as the baseline because it is the canonical tool for working with type errors in Haskell. Although high-level tools like Haskell Language Server exist, they generally relay the GHC error messages verbatim. The procedure of these studies is shown in figure \ref{fig:procedure-1}.
 
 
-Eight tasks were given in both studies. In study 1a, the tasks were taken from exercises from the Haskell programming units. These tasks cover a variety of type errors. However, these tasks, as shown from the result and feedback of user study 1, were too simple to fully evaluate the two options. In the second study, the tasks are sourced from the top 20 Haskell topics on GitHub~\cite{github_github_2022}. The authors manually added type errors. 
+Eight tasks were given in both studies. In study 1a, the tasks were taken from the exercises of the Haskell programming class in the authors' institute. These tasks cover a variety of type errors.  In the second study, the tasks are sourced from the top 20 Haskell topics on GitHub~\cite{github_github_2022}. The authors then manually added type errors into the program. In both studies, the type errors include simple mismatch, confusing syntax, missing instance, precedence and fixation, infinite types, and confusing list versus element. The categories of type errors to include in the tasks followed the common type errors in Tirronen's study \cite{tirronen_understanding_2015}. 
+
+The  studies (1a \& 1b) are designed to answer the research question:
+\begin{itemize}
+    \item \textbf{RQ1.} Do programmers solve type errors faster with \chameleon{} than GHC compiler error messages?
+\end{itemize}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{images/procedure-1.pdf}
-    \caption{}
+    \caption{\todo{Does this figure really help at all?}}
     \label{fig:procedure-1}
 \end{figure}
 
@@ -85,13 +90,9 @@ Eight tasks were given in both studies. In study 1a, the tasks were taken from e
 
 \subsubsection*{\textbf {Results}}
 
-From the data collected during study 1a (\ref{fig:analysis-1a}), we were not able to identify which group performed better. For the trivial challenges we set for users, the individual differences are generally more significant than differences between treatments. The most common feedback (7 out of 35) the study 1a was that the tasks were too trivial to invite meaningful evaluation. One participant said, "Looks nicer than GHC, but without trying it on something more complicated, I cannot conclude whether it would help me in practice."
+From the data collected during study 1a (\ref{fig:analysis-1a}), we were not able to identify which group performed better. For the trivial challenges we set for users, the individual differences are generally more significant than differences between treatments. One interesting observation is task 8, where the \chameleon{} group outperformed the GHC group more consistently (p-value = 0.002456, Wilcoxin signed test). The discrepancy is thought to be related to the nature of Task 8. It has a lengthier source file and involves more language features (abstract data types and high-level functions). GHC struggles to produce a relevant error message for this type of error. We hypothesized that we may observe a more significant difference using tasks with lengthier and more realistic source code. This hypothesis is also supported by the most common feedback (7 out of 35) the study 1a was that the tasks were too trivial to invite meaningful evaluation. One participant said, "Looks nicer than GHC, but without trying it on something more complicated, I cannot conclude whether it would help me in practice." 
 
-One interesting observation is task 8, where the \chameleon{} group outperformed the GHC group more consistently and with a larger effect size (p-value = 0.002456, Wilcoxin signed test). The discrepancy is thought to be related to the nature of Task 8. It has a lengthier source file and involves more language features (abstract data types and high-level functions). GHC struggles to produce a relevant error message for this type of error.
-
-In study 1b, the \chameleon{} group solved the type error faster (p =0.00742, Wilcoxin signed test) than the GHC group in almost all tasks (figure \ref{fig:analysis-1b}), barring task 1. The authors are unclear about the cause of low performance from \chameleon{} in task 1. It is suspected that some participants spent more time exploring the interface of \chameleon{} due to its unfamiliarity and ineffective training. For all the other tasks, from the video recordings, we saw many \chameleon{} users confidently skip reading unrelated chunks of code, while GHC users generally read through the whole program.
-
-In harder problems and messier code, we notice programmers start to report the benefits of \chameleon{}. "It's most useful feature that I noticed was that it points out the locations of both conflicting uses; GHC often makes it difficult to figure out how it's coming to a conclusion about a type." reported one participant. "I think \chameleon{}  does a much better job than GHC's error messages. I like that it shows the sources for the type judgments. This makes it quite easy to figure out how to rectify errors." reported another participant.
+In study 1b, the \chameleon{} group solved the type error faster (p =0.00742, Wilcoxin signed test) than the GHC group in almost all tasks (figure \ref{fig:analysis-1b}), barring task 1. For task 1, it is suspected that some participants spent more time exploring the interface of \chameleon{} due to its unfamiliarity and ineffective training. For all the other tasks, from the video recordings, we saw many \chameleon{} users confidently skip reading unrelated chunks of code, while GHC users generally read through the whole program. In harder problems and messier code, we notice programmers start to report the benefits of \chameleon{}. "It's most useful feature that I noticed was that it points out the locations of both conflicting uses; GHC often makes it difficult to figure out how it's coming to a conclusion about a type." reported one participant. "I think \chameleon{}  does a much better job than GHC's error messages. I like that it shows the sources for the type judgments. This makes it quite easy to figure out how to rectify errors." reported another participant.
 
 % \begin{itemize}
 %     \item {It has a longer source file than other tasks (only shorter than task 6, but task
@@ -148,7 +149,7 @@ During the study, the initial mode of each task alternated through the three dif
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{images/procedure-2.pdf}
-    \caption{}
+    \caption{\todo{Does this figure really help at all?}}
     \label{fig:procedure-2}
 \end{figure}
 

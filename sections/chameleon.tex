@@ -2,6 +2,13 @@
 
 \chameleon{} comprises two parts: a type inference engine and an original debugging interface. This separate architecture allows us to 1) adapt \chameleon{} into multiple front ends, such as IDE extensions, desktop applications, and web applications, and 2) reuse the debugging interface for different programming languages by replacing the back-end type inference engine. The debugging interface is designed from the ground up; the type inference engine is a re-implementation of the original Chameleon with several novel improvements.
 
+\todo{I wonder about a high level overview diagram of tool / usage of tool, then the details of each component?}
+
+\todo{Can you use this example in Motivating Example sectoon (see my comment above) then use it to explain tool in this section?  Make sense?
+
+Is this example too simple...?}
+
+
 \subsection{The Type Inference Engine}
 \label{sec:typeinferenceengine}
 
@@ -136,7 +143,7 @@ When a type error is detected, \chameleon{} provides a list of all candidate exp
     \centering
     \includegraphics[width=\linewidth]{images/single-error-location-example.png}
     \caption{
-With traditional type error messages, one expression is blamed for causing the type error. This expression may not always match the programmers' intention. 
+With traditional type error messages, one expression is blamed for causing the type error. This expression may not always match the programmers' intention. \todo{this figure unreadable...}
     }
     \label{fig:single-candidate}
 \end{figure}
