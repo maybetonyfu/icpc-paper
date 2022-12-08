@@ -9,6 +9,9 @@
 \usepackage{xcolor}
 \usepackage{tabularx}
 \usepackage{minted}
+\makeatletter
+\let\@float@c@listing\@caption
+\makeatother
 \usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 
@@ -22,7 +25,7 @@
 
 % Comment out second line to disable.
 \newcommand{\todo}[1]{}
-\renewcommand{\todo}[1]{{\color{red} TODO: {#1}}}
+% \renewcommand{\todo}[1]{{\color{red} TODO: {#1}}}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -78,9 +81,9 @@ email address or ORCID}
 
 \begin{abstract}
 
-\todo{I would start with saying untyped langs popular e.g. Python and the need to address problems this brings...}
+% \todo{I would start with saying untyped langs popular e.g. Python and the need to address problems this brings...}
 
-In recent years, many programming communities have been undergoing a transition to writing strongly typed programs. To benefit from type-safe codebases, programmers must first overcome the challenge of resolving type errors where text messages can often be unhelpful and misleading. Modern programming tools do not concentrate on making type errors easy to understand. We demonstrate \chameleon{}, a type debugging tool capable of displaying the full context of a type error and allowing programmers to search for where the type error actually occurs based on their prior knowledge and to incrementally verify their assumptions. \chameleon{} was developed through a user-centered, iterative process with four participatory experiments. Through the experiments, we showed that programmers using \chameleon{} fix type errors faster than traditional text-based error messages.  This difference is more significant in harder tasks. Further, programmers actively using \chameleon{} interactive features are shown to be more efficient in fixing type errors than simply reading the type error output.
+Dynamically-typed programming languages are popular in education and the software industry. While presenting a low barrier to entry, they suffer from run-time type errors and longer-term problems in code quality and maintainability. Statically typed languages, while showing strength in these aspects, lack in learnability and ease of use. In particular, fixing type errors poses challenges to both novice users and experts. Further, compiler type error messages are presented in a static way that is biased towards the first occurence of the error in the program code. To help users resolve such type errors we introduce \chameleon{}, a type debugging tool that presents type errors to the user in an unbiased way, allowing them to explore the full context of where the errors could occur. Programmers can interactively verify the steps of reasoning against their intention. Through three studies involving real programmers, we showed that  \chameleon{} is more effective in fixing type errors than traditional text-based error messages. This difference is more significant in harder tasks. Further, programmers actively using \chameleon{}'s interactive features are shown to be more efficient in fixing type errors than passively reading the type error output.
 \end{abstract}
 
 \begin{IEEEkeywords}
