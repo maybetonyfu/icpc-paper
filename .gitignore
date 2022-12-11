@@ -4,3 +4,5 @@ raw/**
 log/**
 _minted-*
 .Rproj.user
+.Rhistory
+.vscode

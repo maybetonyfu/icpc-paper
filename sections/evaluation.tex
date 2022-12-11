@@ -30,10 +30,10 @@ All user studies use a web-based debugging environment developed by the authors.
 
 \subsubsection*{\textbf{Training and group assignment}}
 After consent, participants received interactive training on the tool interface and interactive features. Participants were also shown a cheat sheet summarizing the key functionality of the interface, and had access to the cheat sheet at all times during the study. Participants were given 4 trial runs (2 for each setting) before the data collection started. 
-All the studies used a within-subject design to evaluate the effectiveness of different tools or feature sets while counterbalancing the difference in programming proficiency between participants. In each study, participants were required to complete a series of programming tasks (8 for studies 1a and 1b, 9 for study 2). At each task, a participant receives a single Haskell file that contains one or more type errors. The participant was asked to correct the code with the help of the given tool.
+All the studies used a within-subject design to evaluate the effectiveness of different tools or feature sets while counterbalancing the difference in programming proficiency between participants. In each study, participants were required to complete a series of programming tasks (8 for studies 1a and 1b, 9 for study 2). At each task, a participant receives a single Haskell file that contains one or more type errors. They was then asked to correct the code with the help of the given tool.
 
 
-\subsubsection*{\textbf{Measurement}}
+\subsubsection*{\textbf{Data Collection}}
 Time is measured from the start of each task to the first time the program is successfully type-checked and also passes all the functional tests. The data is automatically recorded by the online debugging environment. To not introduce a barrier to completing the study, every task can be skipped if the participant made three failed attempts or is stuck for over 1 minute on the task.
 After completing all tasks, participants are prompted to complete a debriefing survey. The survey questions include their Haskell experience and feedback on the tools.
 
@@ -100,7 +100,7 @@ The data collected during study 1a, Fig.~\ref{fig:analysis-1a} does not show sig
 From this result, we hypothesized that we may observe a more significant difference using tasks with lengthier and more realistic source code. 
 This hypothesis is also supported by the most common feedback (7 out of 35) that the tasks were too trivial to invite meaningful evaluation. One participant said, ``Looks nicer than GHC, but without trying it on something more complicated, I cannot conclude whether it would help me in practice." 
 
-Therefore, in study 1b we introduced more difficult challenges and indeed observed that the \chameleon{} group were faster (p =0.00742, Wilcoxin signed test) than the GHC group in almost all tasks (figure \ref{fig:analysis-1b}), barring task 1. For task 1, it is suspected that some participants spent more time exploring the interface of \chameleon{} due to its unfamiliarity. For all other tasks, from the video recordings, we saw many \chameleon{} users confidently skip reading unrelated chunks of code, while GHC users generally read through the whole program. In harder problems and messier code, we notice programmers start to report the benefits of \chameleon{}. ``It's most useful feature that I noticed was that it points out the locations of both conflicting uses; GHC often makes it difficult to figure out how it's coming to a conclusion about a type." reported one participant. ``I think \chameleon{}  does a much better job than GHC's error messages. I like that it shows the sources for the type judgments. This makes it quite easy to figure out how to rectify errors." reported another participant.
+Therefore, in study 1b we introduced more difficult challenges and indeed observed that the \chameleon{} group were faster (p = 0.00742, Wilcoxin signed test) than the GHC group in almost all tasks (figure \ref{fig:analysis-1b}), barring task 1. For task 1, it is suspected that some participants spent more time exploring the interface of \chameleon{} due to its unfamiliarity. For all other tasks, from the video recordings, we saw many \chameleon{} users confidently skip reading unrelated chunks of code, while GHC users generally read through the whole program. In harder problems and messier code, we notice programmers start to report the benefits of \chameleon{}. ``It's most useful feature that I noticed was that it points out the locations of both conflicting uses; GHC often makes it difficult to figure out how it's coming to a conclusion about a type." reported one participant. ``I think \chameleon{}  does a much better job than GHC's error messages. I like that it shows the sources for the type judgments. This makes it quite easy to figure out how to rectify errors." reported another participant.
 
 % \begin{itemize}
 %     \item {It has a longer source file than other tasks (only shorter than task 6, but task
@@ -181,7 +181,7 @@ The most striking feature of the data is that users tend to vary wildly in their
         Interaction level & Description \\ \hline
         \textit{Minimal}  & Users completed the tasks by making changes in source code, type checking, and reading error messages. \\ \hline
         \textit{Low}  & Users only actively used universal features in all modes, for example, hovering on "Possible type 1" and "Possible type 2" to narrow down error space. \\ \hline
-        \textit{High}  & Users did everything from the Common feature group but used features specific to the Balanced mode and the Advanced mode, such as activating steps and expression cards. \\ \hline
+        \textit{High}  & Users did everything from the low interaction group but used features specific to the Balanced mode and the Advanced mode, such as activating steps and expression cards. \\ \hline
 \end{tabularx}
 \end{small}
 

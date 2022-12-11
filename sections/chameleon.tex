@@ -30,7 +30,6 @@ Based on the limitations of traditional type errors, we give the following desig
 
 \noindent\textbf{Do not presume} which expression is to blame for the type error based on the order of computation or which possible type for an expression is 'actual' or 'expected'
 
-\end{itemize}
 
 
 \section{Chameleon IDE} \label{chameleon}
@@ -126,7 +125,7 @@ When a type error is detected, \chameleon{} provides a list of all candidate exp
 
 
 
-Selecting a candidate expression card is a way for programmers to communicate to the type checker the knowledge that the other candidate expressions are in fact well-typed. Once a card is selected, the information in the conflicting types panel changes according to the change of candidate expression. In the editor window, some error locations change highlight colors to reflect the updated knowledge of the program. 
+Selecting a candidate expression card is a way for programmers to communicate to the type checker the knowledge that the other candidate expressions are in fact well-typed. Once a card is selected, the information in the conflicting types block changes according to the change of candidate expression. In the editor window, some error locations change highlight colors to reflect the updated knowledge of the program. 
 
 
 This feature can be effective in resolving the problem that traditional tools tend to report errors that happened in source code from third-party libraries. With candidate expression cards, a programmer can freely change the context of the type error to the user-defined variables and functions to gain a better understanding of why their own code does not match the library code instead of the other direction.
@@ -149,6 +148,7 @@ Programmers interact with the candidate expression cards by clicking on them to 
 
 Deduction steps allow programmers to explore all the error locations one at a time (Fig. \ref{fig:deduction}). Steps are shown as a list of sequentially  numbered circular buttons (step buttons) and an explanation layer in the editor window. In the explanation layer, two highlighted error locations are outlined, and a line is drawn to connect these two locations. This line is accompanied by a human-readable text explanation of their semantic connection. Programmers are free to activate any step. The active step is shown as the green button. When activating a step, some highlights switch color. The message in the explanation layer changes as well. A program in Fig. \ref{fig:deduction} generates a list of steps shown in Fig. \ref{fig:step-interface} left.
 
+
 Programmers can use mouse and keyboard shortcuts to increment or decrement the step number or jump to any step. Typically, programmers resolve  type errors by navigating through all the deduction steps and verifying whether each explanation aligns with the intended meaning of the program. Eventually, they will find a step that does not match their intention, and the type error can be fixed by modifying one of the two outlined error locations.
 
 \begin{figure}
@@ -160,8 +160,7 @@ Deduction steps if they are shown all at once (left). In practice, steps are sho
     \label{fig:step-interface}
 \end{figure}
 
-Internally, deduction steps are different ways to group the error locations into two highlighted colors. 
-If all the highlights are placed in a list-like data structure, each increment of the step numbers moves the end of one color and the start of the other forward (Fig.~\ref{fig:step-interface} right).
+Internally, deduction steps are different ways to group the error locations into two highlighted colors. If all the highlights are placed in a list-like data structure, each increment of the step numbers moves the end of one color and the start of the other forward (Fig.~\ref{fig:step-interface} right).
 
 
 \paragraph{Multiple Modes}
@@ -193,7 +192,7 @@ Nielson pointed out  that the two most important issues in designing for usabili
 
 Chameleon was originally a command-line tool developed in the early 2000s to improve type error reporting %and introduced a design for interactive type debugging 
 for the Haskell programming language.
-Unlike traditional type errors produced by the Glasgow Haskell Compiler (GHC)~\cite{ben_gamari_home_2022}, which uses a Hindley–Milner type inference system, Chameleon infers types using constraint solving. In Chameleon, Constraints are generated from the source code based on typing rules. In addition, each constraint is labeled with the location (line and column numbers) where it is generated. This set of constraints is consistent if the program is well-typed and inconsistent otherwise. When a type error occurs, an efficient algorithm is used to derive a minimal subset of the constraints that still contain inconsistencies. This subset is called a Minimal Unsatisfiable Subset (MUS). From this, Chameleon can report a list of locations, using the labels of constraints that are in the MUS. Stuckey et al.~\cite{stuckey_interactive_2003} showed that program locations linked to the constraints from an MUS are all relevant to the type error and must include the cause of the error. In this paper, we will refer to these locations as \textit{error locations}.
+Unlike traditional type errors produced by the Glasgow Haskell Compiler (GHC)~\cite{ben_gamari_home_2022}, which uses a Hindley–Milner type inference system, Chameleon infers types using constraint solving. In Chameleon, Constraints are generated from the source code based on typing rules. In addition, each constraint is labeled with the location (line and column numbers) where it is generated. This set of constraints is consistent if the program is well-typed and inconsistent otherwise. When a type error occurs, an efficient algorithm is used to derive a minimal subset of the constraints that still contain inconsistencies. This subset is called a Minimal Unsatisfiable Subset (MUS). From this, Chameleon can report a list of locations, using the labels of constraints that are in the MUS. Stuckey et al.~\cite{stuckey_interactive_2003} showed that program locations linked to the constraints from an MUS are all relevant to the type error and must include the cause of the error.
 
 Despite successfully borrowing the underlying ideas, we could not reuse the original implementation of Chameleon since the project language standard and libraries used were out of date. 
 Our \chameleon{} implementation extends the original Chameleon approach in a number of ways.
@@ -218,8 +217,7 @@ concrete types \texttt{Int -> Bool} and \texttt{Char -> Bool}.
     \label{fig:compare-to-original}
 \end{figure}
 
-This has a few benefits. First, concrete types provide extra information to programmers. With a type of \texttt{(Float, Float)}, programmers may want to convey a point in 2d space. However, this information is not preserved in \texttt{(a, Float)}. Second, with concrete types, the debugging front end has more flexibility to change the representation of types. If the front end
-understands the type language in Haskell, it is possible to recognize and replace ground facts that are overlapping in both possible types and have the same effect. The other direction is impossible. 
+This has a few benefits. First, concrete types provide extra information to programmers. With a type of \texttt{(Float, Float)}, programmers may want to convey a point in 2d space. However, this information is not preserved in \texttt{(a, Float)}. Second, with concrete types, the debugging front end has more flexibility to change the representation of types. If the front end understands the type language in Haskell, it is possible to recognize and replace ground facts that are overlapping in both possible types and have the same effect. The other direction is impossible. \tf{This sentence is not very clear}
 
 \paragraph{Type error explanation}
 
