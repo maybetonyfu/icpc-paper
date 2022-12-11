@@ -147,11 +147,9 @@ Programmers interact with the candidate expression cards by clicking on them to 
 %     \label{fig:ghc-error-example}
 % \end{figure}
 
-Deduction steps allow programmers to explore all the error locations one at a time (Fig. \ref{fig:deduction}). Steps are shown as a list of sequentially  numbered circular buttons (step buttons) and an explanation layer in the editor window. In the explanation layer, two highlighted error locations are outlined, and a line is drawn to connect these two locations to a human-readable text explanation of
-their semantic connection. Programmers are free to activate any step. The active step is shown as the green button. When activating a step, some highlights switch color. The message in the explanation layer changes as well. A program in Fig. \ref{fig:deduction} generates a list of steps shown in Fig. \ref{fig:step-interface} left.
+Deduction steps allow programmers to explore all the error locations one at a time (Fig. \ref{fig:deduction}). Steps are shown as a list of sequentially  numbered circular buttons (step buttons) and an explanation layer in the editor window. In the explanation layer, two highlighted error locations are outlined, and a line is drawn to connect these two locations. This line is accompanied by a human-readable text explanation of their semantic connection. Programmers are free to activate any step. The active step is shown as the green button. When activating a step, some highlights switch color. The message in the explanation layer changes as well. A program in Fig. \ref{fig:deduction} generates a list of steps shown in Fig. \ref{fig:step-interface} left.
 
-Programmers can use mouse and keyboard shortcuts to increment or decrement the step number or jump to any step. Typically, a programmer resolves  type errors by navigating through all the deduction steps and verifying whether each explanation aligns with the intended meaning of the program. Eventually, they will find a step that does not match her intention, and the type error can be fixed by modifying one of the two outlined error locations.
-
+Programmers can use mouse and keyboard shortcuts to increment or decrement the step number or jump to any step. Typically, programmers resolve  type errors by navigating through all the deduction steps and verifying whether each explanation aligns with the intended meaning of the program. Eventually, they will find a step that does not match their intention, and the type error can be fixed by modifying one of the two outlined error locations.
 
 \begin{figure}
     \centering
@@ -162,7 +160,7 @@ Deduction steps if they are shown all at once (left). In practice, steps are sho
     \label{fig:step-interface}
 \end{figure}
 
-Internally, deduction steps are different ways to group the error locations into two different highlighted colors. 
+Internally, deduction steps are different ways to group the error locations into two highlighted colors. 
 If all the highlights are placed in a list-like data structure, each increment of the step numbers moves the end of one color and the start of the other forward (Fig.~\ref{fig:step-interface} right).
 
 
