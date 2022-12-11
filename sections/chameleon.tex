@@ -129,7 +129,7 @@ When a type error is detected, \chameleon{} provides a list of all candidate exp
 Selecting a candidate expression card is a way for programmers to communicate to the type checker the knowledge that the other candidate expressions are in fact well-typed. Once a card is selected, the information in the conflicting types panel changes according to the change of candidate expression. In the editor window, some error locations change highlight colors to reflect the updated knowledge of the program. 
 
 
-This feature can be effective in resolving the problem that traditional tools tend to report errors that happened in source code from third-party libraries. With candidate expression cards, a programmer can freely change the context of the type error to the user-defined variables and functions to gain a better understanding of why her own code does not match the library code instead of the other direction.
+This feature can be effective in resolving the problem that traditional tools tend to report errors that happened in source code from third-party libraries. With candidate expression cards, a programmer can freely change the context of the type error to the user-defined variables and functions to gain a better understanding of why their own code does not match the library code instead of the other direction.
 
 
 Programmers interact with the candidate expression cards by clicking on them to commit the change of meaning or hovering on them to peek at the effect of the change; the effect is reverted once the cursor moves away.
@@ -150,7 +150,7 @@ Programmers interact with the candidate expression cards by clicking on them to 
 Deduction steps allow programmers to explore all the error locations one at a time (Fig. \ref{fig:deduction}). Steps are shown as a list of sequentially  numbered circular buttons (step buttons) and an explanation layer in the editor window. In the explanation layer, two highlighted error locations are outlined, and a line is drawn to connect these two locations to a human-readable text explanation of
 their semantic connection. Programmers are free to activate any step. The active step is shown as the green button. When activating a step, some highlights switch color. The message in the explanation layer changes as well. A program in Fig. \ref{fig:deduction} generates a list of steps shown in Fig. \ref{fig:step-interface} left.
 
-Programmers can use mouse and keyboard shortcuts to increment or decrement the step number or jump to any step. Typically, a programmer resolves  type errors by navigating through all the deduction steps and verifying whether each explanation aligns with the intended meaning of the program. Eventually, she will find a step that does not match her intention, and the type error can be fixed by modifying one of the two outlined error locations.
+Programmers can use mouse and keyboard shortcuts to increment or decrement the step number or jump to any step. Typically, a programmer resolves  type errors by navigating through all the deduction steps and verifying whether each explanation aligns with the intended meaning of the program. Eventually, they will find a step that does not match her intention, and the type error can be fixed by modifying one of the two outlined error locations.
 
 
 \begin{figure}
