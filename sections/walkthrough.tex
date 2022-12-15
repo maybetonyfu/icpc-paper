@@ -8,8 +8,13 @@ programmer Maxine.
 \subsection{Basic mode} \label{sub:basic}
 Maxine writes a function to calculate the sum of a list of
 numbers, but \chameleon{} shows there is a type error (Fig.~\ref{fig:basic-mode-1}). 
-After reading the error reports, Maxine realizes that the error possibly revolves 
-around the expression \texttt{xs}.
+After reading the error reports, Maxine realizes that the error revolves 
+around the expression \texttt{xs}. That is: \texttt{xs} can be
+either \texttt{[a]} or \texttt{Int}. By matching the color in the
+conflicting type block (Fig. \ref{fig:anatomy}-H) and the highlighted error locations 
+Maxine knows that the \texttt{[a]} results from the pattern matching of the
+\texttt{:} operator, while \texttt{Int} results from using \texttt{+} to
+ add two expressions. 
 
 \begin{figure}
         \centering
@@ -45,29 +50,13 @@ around the expression \texttt{xs}.
 
 
 
-After scanning the type error report, Maxine realizes that \texttt{xs} can be
-either \texttt{[a]} or \texttt{Int}. By matching the color in the
-conflicting type panel (Fig. \ref{fig:anatomy}-G) and the highlighted error locations 
-Maxine knows that the \texttt{[a]} results from the pattern matching of the
-\texttt{:} operator, while \texttt{Int} results from using \texttt{+} to
- add two expressions. 
-At this point, Maxine knows the possible type 1 aligns with her understanding of
-the program, and therefore, the error locations with blue highlights must be
-erroneous. After examining the program, it is obvious that Maxine missed
-applying the \texttt{sum} function recursively at the right-hand side of the
-addition. 
+At this point, Maxine knows the possible type 1 aligns with her intention, and therefore, the error locations with blue highlights must be erroneous. After examining the program, it comes clear that Maxine forgets to apply the \texttt{sum} function recursively at the right-hand side of the addition. 
 
 
 \subsection{Balanced mode} \label{sub:balanced}
 
 
-Maxine writes additional code to add only even numbers in a list of integers, reusing the \texttt{sum} function she wrote
-earlier. After saving the file, \chameleon{} shows that there is a type error in the
-expression \texttt{sum} (Fig.~\ref{fig:balance-mode-1}). However, this is not   \todo{Add annotation to figure like prev ones i.e. (1) so can refer to in text without reader searching for it?}
-helpful because Maxine knows that the implementation of  \texttt{sum} is correct 
-because it was verified in the previous task. Switching to
-balanced mode, Maxine noticed that \chameleon{} shows two cards: \texttt{sum}
-and \texttt{evens}. 
+Maxine writes additional code to add only even numbers in a list of integers, reusing the \texttt{sum} function she wrote earlier. After saving the file, \chameleon{} shows a type error in the expression \texttt{sum} (Fig.~\ref{fig:balance-mode-1}). However, this is not helpful because Maxine has just verified the implementation of \texttt{sum}. Switching to balanced mode, \chameleon{} shows two cards: \texttt{sum} and \texttt{evens}. 
 
 \begin{figure}
         \centering
@@ -87,18 +76,18 @@ and \texttt{evens}.
         \caption{
             Clicking on the \texttt{evens} card (5) results in the changes in the
             conflicting types panel to show the possible types for \texttt{evens},
-            and the changes highlights color to reflect the assumption that the
+            and the changes highlight color to reflect the assumption that the
             definition of \texttt{evens} is the cause of the error.  
         }
         \label{fig:balance-mode-2}
 \end{figure}
 
-Maxine therefore clicks on the \texttt{evens} card and \chameleon{} shows two
+Maxine therefore clicks on the \texttt{evens} card and \chameleon{} reports two
 possible types for the expression \texttt{[Int]} and \texttt{[Int] -> [Int]}
 (Fig. \ref{fig:balance-mode-2}). Knowing the expression \texttt{evens} holds
 a temporary list of even integers (hence it is of \texttt{[Int]} types), Maxine
-knows the Possible type 2 is unintended, and blue in-text highlights must
-contain the cause. It does not take long until Maxine realizes that the list 
+knows the Possible type 2 is unintended. The locations with blue highlights must
+contain the cause. It does not take long for Maxine to realize the list 
 \texttt{l} is not supplied to the \texttt{filter} function.
 
 
@@ -148,7 +137,7 @@ contain the cause. It does not take long until Maxine realizes that the list
 
 For the task shown in section \ref{sub:balanced}, if Maxine is not satisfied by
 the options provided by \chameleon{}, by switching to advanced
-mode, she has access to the debugging steps and the explanation layer. 
+mode, she has access to the debugging steps. 
 
 First, Maxine clicks on step 5 (Fig. \ref{fig:advanced-mode-step5}) and verifies
 that the two occurrences of \texttt{evens} are supposed to be identical, and the
