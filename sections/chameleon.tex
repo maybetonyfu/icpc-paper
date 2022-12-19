@@ -137,12 +137,12 @@ Programmers can use mouse and keyboard shortcuts to increment or decrement the s
     \centering
     \includegraphics[width=\linewidth, trim=0mm 0mm 0mm 0mm]{images/step-explain.pdf}
     \caption{
-Deduction steps if they are shown all at once (left). In practice, steps are shown one at a time. Programmers increment or decrement the step number using the step control bar (Fig. \ref{fig:anatomy}-G) or by directly clicking on a step button (Fig. \ref{fig:anatomy}-F). To increment or decrement the deduction step can be intuitively thought of as moving the position of the \textit{split point} where the blue and orange highlights divide (right).
+Deduction steps if they are shown all at once. In practice, steps are shown one at a time. Programmers increment or decrement the step number using the step control bar (Fig. \ref{fig:anatomy}-G) or by directly clicking on a step button (Fig. \ref{fig:anatomy}-F). To increment or decrement the deduction step can be intuitively thought of as moving the position of the \textit{splitting point} (dotted lines) where the blue and orange highlights divide.
         }
     \label{fig:step-interface}
 \end{figure}
 
-Internally, deduction steps are different ways to group the error locations into two highlighted colors. All the relevant constraints (highlights) are divided into two groups, denoted by the two colors. Each color infers a different type of the candidate expression. Each increment of the step changes the place where the two colors are divided by moving one constraint from one color to the other.  (Fig.~\ref{fig:step-interface} right).
+Internally, deduction steps are different ways to divide the error locations into two  groups, denoted by the two colors. Each color infers a different type of the candidate expression. Each increment/decrement of the step changes the splitting point (dotted lines in Fig.~\ref{fig:step-interface}) of the two colors.
 
 
 \paragraph{Multiple Modes}
