@@ -55,9 +55,9 @@ durations |> group_by(task) |> summarise(
   
 
 
-attemps <- events %>%
-  filter(participant_id %in% completed) %>% 
-  filter(event_name == "attempts")
+# attemps <- events %>%
+#   filter(participant_id %in% completed) %>% 
+#   filter(event_name == "attempts")
   
 ```
 
@@ -122,7 +122,7 @@ durations |>
     axis.title = element_text(size = 14),
     text = element_text(size = 14)
     )
-ggsave("r1-data.pdf", device = "pdf", plot = last_plot(), units ="mm", width = 210)
+# ggsave("r1-data.pdf", device = "pdf", plot = last_plot(), units ="mm", width = 210)
 
   
 ```
@@ -141,15 +141,16 @@ r
 ```
 
 ```{r}
-
 d2 <- durations |>
   filter(task == 8) |>
   select(participant_id, treatment, duration) |>
   group_by(participant_id, treatment) |> 
   summarise(duration=mean(duration)) |>
   pivot_wider(names_from = treatment, values_from = duration)
+```
 
 
+```{r}
 r2 <- wilcox.test(d2$Chameleon, d2$Ghc)
 r2
 
@@ -175,6 +176,11 @@ events |>
 events |>
   ggplot(aes(x=time)) +
   geom_density()
+```
 
-  
+
+```{r}
+durations |> 
+  ggplot(mapping=aes(duration)) + 
+  geom_density()
 ```
