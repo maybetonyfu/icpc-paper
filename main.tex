@@ -23,6 +23,14 @@
 \newcommand{\td}[1]{\textcolor{teal}{\textsc{td}: #1}}
 \newcommand{\tf}[1]{\textcolor{magenta}{\textsc{tf}: #1}}
 
+\makeatletter % changes the catcode of @ to 11
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother % changes the catcode of @ back to 12
+
 % Comment out second line to disable.
 \newcommand{\todo}[1]{}
 % \renewcommand{\todo}[1]{{\color{red} TODO: {#1}}}
@@ -38,44 +46,46 @@
   Visualization and Exploration
 }
 
-\ignore{
-\author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+%\ignore{
+\author{\IEEEauthorblockN{Shuai Fu}
+\IEEEauthorblockA{
+\textit{Faculty of Information Technology} \\
+\textit{Monash University}\\
+Clayton, Australiay \\
+\texttt{shuai.fu@monash.edu}}
 \and
-\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockN{Tim Dwyer}
+\IEEEauthorblockA{
+\textit{Faculty of Information Technology} \\
+\textit{Monash University}\\
+Clayton, Australiay \\
+\texttt{tim.dwyer@monash.edu}}
 \and
-\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockN{Peter J. Stuckey}
+\IEEEauthorblockA{
+\textit{Faculty of Information Technology} \\
+%\textit{Data Science and Artificial Intelligence} \\
+\textit{Monash University}\\
+Clayton, Australia \\
+\texttt{peter.stuckey@monash.edu}}
 \and
-\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
-\and
-\IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
-\and
-\IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\linebreakand 
+\IEEEauthorblockN{Jackson Wain}
+\IEEEauthorblockA{\textit{Faculty of Information Technology} \\
+\textit{Monash University}\\
+Clayton, Australia \\
+\texttt{0000-0003-2006-3538}
 }
+\and
+\IEEEauthorblockN{Jesse Linossier}
+\IEEEauthorblockA{\textit{Faculty of Information Technology} \\
+\textit{Monash University}\\
+Clayton, Australia \\
+\texttt{0000-0001-6782-7019}
 }
+
+}
+%}
 
 \maketitle
 
@@ -83,7 +93,7 @@ email address or ORCID}
 
 % \todo{I would start with saying untyped langs popular e.g. Python and the need to address problems this brings...}
 
-Dynamically typed programming languages are popular in education and the software industry. While presenting a low barrier to entry, they suffer from run-time type errors and longer-term problems in code quality and maintainability. Statically typed languages, while showing strength in these aspects, lack in learnability and ease of use. In particular, fixing type errors poses challenges to both novice users and experts. Further, compiler type error messages are presented in a static way that is biased toward the first occurrence of the error in the program code. To help users resolve such type errors we introduce \chameleon{}, a type debugging tool that presents type errors to the user in an unbiased way, allowing them to explore the full context of where the errors could occur. Programmers can interactively verify the steps of reasoning against their intention. Through three studies involving real programmers, we showed that  \chameleon{} is more effective in fixing type errors than traditional text-based error messages. This difference is more significant in harder tasks. Further, programmers actively using \chameleon{}'s interactive features are shown to be more efficient in fixing type errors than passively reading the type error output.
+Dynamically typed programming languages are popular in education and the software industry. While presenting a low barrier to entry, they suffer from run-time type errors and longer-term problems in code quality and maintainability. Statically typed languages, while showing strength in these aspects, lack in learnability and ease of use. In particular, fixing type errors poses challenges to both novice users and experts. Further, compiler type error messages are presented in a static way that is biased toward the first occurrence of the error in the program code. To help users resolve such type errors we introduce \chameleon{}, a type debugging tool that presents type errors to the user in an unbiased way, allowing them to explore the full context of where the errors could occur. Programmers can interactively verify the steps of reasoning against their intention. Through three studies involving actual programmers, we showed that \chameleon{} is more effective in fixing type errors than traditional text-based error messages. This difference is more significant in harder tasks. Further, programmers actively using \chameleon{}'s interactive features are shown to be more efficient in fixing type errors than passively reading the type error output.
 \end{abstract}
 
 \begin{IEEEkeywords}

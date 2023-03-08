@@ -55,7 +55,10 @@ Is this example too simple...?}
 
 \subsection{The Debugging Interface}
 
-The \chameleon{} debugging interface provides three main features to visualize the relation between the error statement and locations in code and to explore the explanation of each error location given by the type inference engine. %Further, programmers  can turn on and off features to suit their preferences and debugging needs.
+The \chameleon{} debugging interface provides three main features to visualize and explain type errors.
+
+% the relation between the error statement and locations in code and to explore the explanation of each error location given by the type inference engine. 
+%Further, programmers  can turn on and off features to suit their preferences and debugging needs.
 
 
 \paragraph{Type compare tool} \label{sub:type-compare}
@@ -185,26 +188,27 @@ Our \chameleon{} implementation extends the original Chameleon approach in a num
 \paragraph{Recovering concrete types from type errors}
 
 
-Using only constraints from the MUS is sufficient to locate the type error, but to recover types from type errors we need  constraints from parts of the program that are irrelevant to the type error.  For instance, consider an ill-typed 2-tuple where two possible types can be assigned: \texttt{(Int, Int)} and \texttt{(Int, String)}. The types reconstructed from Chameleon may be \texttt{(a, Int)} and \texttt{(a, String)}. Although the recovered types are theoretically correct, they introduce a new type variable \texttt{a}, making the error message harder to understand. To solve this issue in \chameleon{}, for each constraint \texttt{c} in the MUS, we find a maximally satisfiable subset (MSS) from all the constraints that contain every other element of MUS but not \texttt{c}. These maximally satisfiable subsets, while not helpful to inform error locations, will produce the most concrete conflicting types, see Fig.~\ref{fig:compare-to-original}. 
+Using only constraints from the MUS is sufficient to locate the type error, but to recover types from type errors we need constraints from parts of the program that are irrelevant to the type error.  For instance, consider an ill-typed 2-tuple where two possible types can be assigned: \texttt{(Int, Int)} and \texttt{(Int, String)}. The types reconstructed from Chameleon may be \texttt{(a, Int)} and \texttt{(a, String)}. Although the recovered types are theoretically correct, they introduce the notation \texttt{a}, which denotes a generic type variable that can be any type, making the error message harder to understand. To solve this issue in \chameleon{}, for each constraint \texttt{c} in the MUS, we find a maximally satisfiable subset (MSS) from all the constraints that contain every other element of MUS but not \texttt{c}. These maximally satisfiable subsets, while not helpful in error localization, will produce the most concrete types, see Fig.~\ref{fig:compare-to-original}. Using concrete types, such as \texttt{Int} and \texttt{String},  provides extra information to programmers. With a type of \texttt{(Float, Float)}, programmers may want to convey a point in 2d space. However, a type of \texttt{(a, Float)} does not preserve such information.
 
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth, trim=0mm 6mm 0mm 0mm]{images/compare-to-original.pdf}
     \caption{
-Reporting the same type error, Chameleon uses
+Reporting the same type error, Chameleon uses more abstract types
 \texttt{Int -> a} and \texttt{Char -> a}, while \chameleon{} uses the 
-concrete types \texttt{Int -> Bool} and \texttt{Char -> Bool}.
+concrete types (types that do not contain type variables) \texttt{Int -> Bool} and \texttt{Char -> Bool}.
     }
     \label{fig:compare-to-original}
 \end{figure}
 
-Using concrete types provides extra information to programmers. With a type of \texttt{(Float, Float)}, programmers may want to convey a point in 2d space. However, a type of \texttt{(a, Float)} does not preserve such information. If the types get too verbose for programmers to identify the conflict between the two signatures, it is always possible to mute the overlapping information and highlight the differences from the debugging front end.
+ 
+% If the types get too verbose for programmers to identify the conflict between the two signatures, it is always possible to mute the overlapping information and highlight the differences from the debugging front end.
 
 
 \paragraph{Type error explanation}
 
-In addition, \chameleon{} provides support for type explanation. Similar to the type explanation system  in ~\cite{jun_explaining_2002},  \chameleon{} is able to produce a human-readable explanation, but for type errors. This is achieved by annotating nodes in the abstract syntax tree with constraints and the typing rules used. We generate an inference history from constraints and accompanying annotations. 
+In addition, \chameleon{} provides support for type explanation. Similar to the type explanation system  in ~\cite{jun_explaining_2002},  \chameleon{} is able to produce a human-readable explanation, but for type errors. This is achieved by annotating nodes in the abstract syntax tree with constraints and the type inference rules used. We generate an inference history from constraints and accompanying annotations. 
 
 
 % \begin{lstlisting} [
