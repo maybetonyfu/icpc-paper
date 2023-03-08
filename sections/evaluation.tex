@@ -32,10 +32,11 @@ All the studies used a within-subject design to evaluate the effectiveness of di
 
 
 \subsubsection*{\textbf{Data Collection}}
-Time is measured from the start of each task to the first time the program is successfully type-checked and also passes all the functional tests. The data is automatically recorded by the online debugging environment. To not introduce a barrier to completing the study, every task can be skipped if the participant made three failed attempts or is stuck for over 1 minute on the task.
+Time is measured from the start of each task to the first time the program is successfully type-checked and also passes all the functional tests. Participants are able to skip a task if they are stuck. 
+% The data is automatically recorded by the online debugging environment. To not introduce a barrier to completing the study, every task can be skipped if the participant made three failed attempts or is stuck for over 1 minute on the task.
 After completing all tasks, participants are prompted to complete a debriefing survey. The survey questions include their Haskell experience and feedback on the tools.
 
-We used a browser session recording tool~\cite{openreplay_openreplay_2022} to record the study sessions. This provides us with a ``poor man's video recording" to identify usability issues in the study and to recognize general patterns. 
+We used a browser session recording tool~\cite{openreplay_openreplay_2022} to record the study sessions. This allows us to identify usability issues in the study and to recognize general patterns. 
 %The reason we found this format inferior is that the recording technology does not provide a high enough sampling rate for us to be confidently used for rigorous analysis.
 %One use of the session recording is for outlier trimming.  We identify participants who left the computer for an extended period of time. We first ran a statistical analysis to identify the long gap (2 standard deviations) between actions using program logs for each participant. Then, we manually checked with the session recording to verify there was actually no user input (mouse movement, scrolling). 
 
@@ -79,7 +80,7 @@ Studies (1a \& 1b) address the research question:
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth,trim=0mm 12mm 0mm 35mm,clip]{images/user-study-1a.pdf}
+    \includegraphics[width=0.8\linewidth,trim=15mm 12mm 15mm 35mm,clip]{images/user-study-1a.pdf}
     \caption{Study 1a task completion time (secs.) with 95\% confidence interval.}
     \label{fig:analysis-1a}
 \end{figure}
@@ -87,7 +88,7 @@ Studies (1a \& 1b) address the research question:
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth,trim=0mm 15mm 0mm 35mm,clip]{images/user-study-1b.pdf}
+    \includegraphics[width=0.8\linewidth,trim=12mm 15mm 12mm 35mm,clip]{images/user-study-1b.pdf}
     \caption{Study 1b task completion time (secs.) with 95\% confidence interval.}
     \label{fig:analysis-1b}
 \end{figure}
@@ -184,7 +185,7 @@ Study 2 is more exploratory in methodology than Study 1. We encouraged programme
 \end{small}
 
 
-As shown in  Fig.~\ref{fig:r4-analysis}, the time to complete each task roughly relates to the interaction level of participants. Participants with higher interaction levels generally performed better, and the lowest interaction level was worse. Tukey’s HSD Test for multiple comparisons found that the completion time was significantly different between the minimal interaction group and the high interaction group ($p \le 0.001$, 95\% C.I. = [18.26, 31.41]), and between the minimal interaction group and the low interaction group ($p \le 0.001$, 95\% C.I. = [11.96, 26.67]). The results from three tasks stand out from the general trend: in Tasks 4 and 6, higher interaction users performed worse, and in task 9, the general trend is exaggerated. As with Study 1a and 1b, this difference is likely related to task difficulty. Tasks 4 and 6 are shorter than other tasks. The ideal fixes for these two tasks are placed relatively early in the source code (both in the first two lines of the source code). Users simply reading top to bottom could quickly identify the error without needing to skip unrelated sections of code using the information provided by /chameleon{}. This reduced the apparent benefit of /chameleon{} in these tasks. On the other hand, task 9 is the lengthiest task of all. It also involves more complex features, such as mutually recursive type definitions.
+As shown in  Fig.~\ref{fig:r4-analysis}, the time to complete each task roughly relates to the interaction level of participants. Participants with higher interaction levels generally performed better, and the lowest interaction level was worse. Tukey’s HSD Test for multiple comparisons found that the completion time was significantly different between the minimal interaction group and the high interaction group ($p \le 0.001$, 95\% C.I. = [18.26, 31.41]), and between the minimal interaction group and the low interaction group ($p \le 0.001$, 95\% C.I. = [11.96, 26.67]). The results from three tasks stand out from the general trend: in Tasks 4 and 6, higher interaction users performed worse, and in task 9, the general trend is exaggerated. As with Study 1a and 1b, this difference is likely related to task difficulty. Tasks 4 and 6 are shorter than other tasks. The ideal fixes for these two tasks are placed relatively early in the source code (both in the first two lines of the source code). Users simply reading top to bottom could quickly identify the error without needing to skip unrelated sections of code using the information provided by \chameleon{}. This reduced the apparent benefit of \chameleon{} in these tasks. On the other hand, task 9 is the lengthiest task of all. It also involves deeply nested type definations that are harder to follow in mind.
 
 \begin{figure}
     \centering
@@ -219,8 +220,6 @@ Another observation is when using the mode switching feature of \chameleon{}, we
 
 One threat to the validity of the evaluation is the number of participants. Although for each study we received hundreds of online participants, the studies suffered from a high abandonment rate (especially study 1b). This was expected: the programming challenges are difficult, and our volunteer participants are unremunerated. 
 Because we recruited participants online and anonymized all the participants, it is possible for participants of a previous study to enter a later one. This creates variation in familiarity. We offset this by using new code challenges in every study and conducting trial runs before data collection to bring new participants up to speed.
-Conducting studies remotely and unsupervised there is no way to intervene when users encounter usability issues. To mitigate this, we conducted cognitive walkthroughs and sandbox pilots before running each study.
+Conducting studies remotely and unsupervised left us no means to intervene when users encounter usability issues. To mitigate this, we conducted cognitive walkthroughs and sandbox pilots before running each study.
 
-Future evaluation would benefit from using more realistic tasks. In studies 1b and 2, we used more challenging tasks compared to study 1a. However, the complexity is just short of what professional Haskell programmers may face in the production Haskell codebase. It would be interesting to see how \chameleon{} is used against type errors that span multiple files and packages and include more confusing abstractions, like Monads, Monad transformers, and Lenses.  
-
-% The online study limited the amount of qualitative data we could gather from the users. Although we handed out debriefing surveys after each study, it is no substitute for more in-depth qualitative study methods. Inviting users for speak-aloud walkthroughs and interviews are viable methods to unveil deeper usability issues about \chameleon{}.
+Future evaluation would benefit from using more realistic tasks. The tasks in our human studies do not get as complex as professional Haskell programmers may face in a typical production codebase. It would be interesting to see how \chameleon{} is used against type errors that span multiple files and packages and include more confusing abstractions, like Monads, Monad transformers, and Lenses.
