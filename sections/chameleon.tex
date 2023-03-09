@@ -17,7 +17,7 @@ Haack and Wells~\cite{haack_type_2004} noted that ``\textit{Identifying only one
 
 \subsubsection{\textbf{Traditional type errors are biased}}
 A common form of bias happens when a type error is reported in one expression, but it can occur in multiple other expressions as well. In Fig.~\ref{fig:motivation-example}, the error message arbitrarily focuses on only \texttt{addPair}, while ignoring that the literals in the definition of \texttt{u} may be incorrect. %Technically, this results from the side effect of different unification orders of the internal type-checking technique and has no bearing on what the programmers think and expect. 
-Another form of bias is that traditional type errors are often framed as conflicts between \texttt{Expected type} and \texttt{Actual type}. This framing is standard practice in most typed languages. However, what is the \texttt{expected} and what is \texttt{actual} are a side effect of different unification orders rather than the intention of the programmer. In both forms, the error message may lead programmers to falsely believe the validity of parts of code and wrongly accuse others.
+Another form of bias is that traditional type errors are often framed as conflicts between \texttt{Expected type} and \texttt{Actual type}. This framing is standard practice in most typed languages. However, what is \texttt{expected} and what is \texttt{actual} are a side effect of different unification orders rather than the intention of the programmer. In both forms, the error message may lead programmers to falsely believe the validity of parts of code and wrongly accuse others.
 
 \subsubsection{\textbf{Traditional type errors give poor explanations}}
 When the compiler rejects a program, the internal state of type checking is the result of a complex computation. But the details of this process are hard to explain to users and are usually not reported by compilers. For the typical type error shown in Fig.~\ref{fig:motivation-example}, the evidence for the type error is gathered from the previous two declarations. These have to be rediscovered by programmers using less rigorous methods. 
@@ -150,10 +150,10 @@ Internally, deduction steps are different ways to divide the error locations int
 
 \paragraph{Multiple Modes}
 
-Nielson pointed out  that the two most important issues in designing for usability are understanding the users' tasks and the differences in users \cite{jakob_nielsen_usability_1993}. From analyzing how users use \chameleon{}, we realized that the ideal debugging interface should adapt to the specific programmer and programming task. There are cases where a programmer wants the debugger to simply ``show the answer", and others to dive deeper into the problem domain and search for the optimal solution. To accommodate the need to customize the level of information density and granularity of control, \chameleon{} provides three modes: basic, balanced, and advanced. Programmers can switch between modes by clicking on the mode switching toggles (Fig. \ref{fig:anatomy}-C). The features accessible from different modes are summarised in the following table:%shown in table~\ref{tab:chameleon-features}.
+Nielson pointed out  that the two most important issues in designing for usability are understanding the users' tasks and the differences in users \cite{jakob_nielsen_usability_1993}. From analyzing how users use \chameleon{}, we realized that the ideal debugging interface should adapt to the specific programmer and programming task. There are cases where a programmer wants the debugger to simply ``show the answer", and others to dive deeper into the problem domain and search for the optimal solution. To accommodate the need to customize the level of information density and granularity of control, \chameleon{} provides three modes: basic, balanced, and advanced. Programmers can switch between modes by clicking on the mode switching toggles (Fig. \ref{fig:anatomy}-C). The features accessible from different modes are summarized in table~\ref{tab:chameleon-features}.%shown in table~\ref{tab:chameleon-features}.
 
-% \begin{table}
-%     \centering
+\begin{table}
+    \centering
 \begin{scriptsize}
 \begin{center}
     \begin{tabular}{ l l  }
@@ -167,9 +167,9 @@ Nielson pointed out  that the two most important issues in designing for usabili
     \end{tabular}
     \end{center}
 \end{scriptsize}
-%     \caption{\chameleon{} modes and features}
-%     \label {tab:chameleon-features}
-% \end{table}
+    \caption{\chameleon{} modes and features}
+    \label {tab:chameleon-features}
+\end{table}
 
 
 \subsection{The Type Inference Engine}
