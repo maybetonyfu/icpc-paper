@@ -97,7 +97,7 @@ Studies (1a \& 1b) address the research question:
 
 The data collected during study 1a, Fig.~\ref{fig:analysis-1a} does not show significant differences across Tasks 1-7. In hindsight, these tasks were trivial challenges for most users, and the individual differences among participants are generally more significant than the differences between treatments. However, one interesting observation is task 8, where the \chameleon{} group outperformed the GHC group. We attribute this significant difference to the difficulty of Task 8. The source file is longer and involves more language features (abstract data types and high-level functions). GHC struggles to produce a relevant error message for this type of error. 
 From this result, we hypothesized that we might observe a more significant difference using tasks with lengthier and more realistic source code. 
-This hypothesis is also supported by the most common feedback (7 out of 35) that the tasks were too trivial to invite meaningful evaluation. One participant said, ``Looks nicer than GHC, but without trying it on something more complicated, I cannot conclude whether it would help me in practice." 
+This hypothesis is also supported by the most common feedback that the tasks were too trivial to invite meaningful evaluation. One participant said, ``Looks nicer than GHC, but without trying it on something more complicated, I cannot conclude whether it would help me in practice." 
 
 Therefore, in study 1b we introduced more difficult challenges and indeed observed that the \chameleon{} group was faster than the GHC group in almost all tasks (figure \ref{fig:analysis-1b}), barring task 1. A two-sample paired t-test was performed to compare the completion time between \chameleon{} and GHC groups. There was a significant difference between the two groups: $t(23) = -3.86, p = 0007$. For task 1, it is suspected that some participants spent more time exploring the interface of \chameleon{} due to its unfamiliarity. For all other tasks, from the video recordings, we saw many \chameleon{} users confidently skip reading unrelated chunks of code, while GHC users generally read through the whole program. In harder problems and messier code, we notice programmers start to report the benefits of \chameleon{}. ``It's most useful feature that I noticed was that it points out the locations of both conflicting uses; GHC often makes it difficult to figure out how it's coming to a conclusion about a type." reported one participant. ``I think \chameleon{}  does a much better job than GHC's error messages. I like that it shows the sources for the type judgments. This makes it quite easy to figure out how to rectify errors." reported another participant.
 
@@ -175,8 +175,8 @@ Study 2 is more exploratory in methodology than Study 1. We encouraged programme
 \begin{scriptsize}
 \begin{small}
 \noindent\begin{tabularx}{\linewidth}{ 
-  | >{\hsize=.3\hsize}X 
-  | >{\hsize=.7\hsize \raggedright\arraybackslash}X  | }
+  | >{\hsize=.26\hsize}X 
+  | >{\hsize=.74\hsize \raggedright\arraybackslash}X  | }
     \hline
         Interaction level & Description \\ \hline
         \textit{Minimal}  & Users completed the tasks by making changes in source code, type checking, and reading error messages. \\ \hline
@@ -209,7 +209,7 @@ As shown in  Fig.~\ref{fig:r4-analysis}, the time to complete each task roughly 
 % \end{figure}
 
 
-Another observation is when using the mode switching feature of \chameleon{}, we show this by presenting the starting mode and finishing mode of each task and each participant in a correlation matrix (Fig. \ref{fig:r4-mode-switching}). This observation suggests two characteristics of using multi-mode debugging tools. First, to answer \textbf{RQ2.2} programmers are generally reluctant to switch modes: 53\% changing modes vs. 47\% staying in the same mode. Second, to answer \textbf{RQ2.3} when changing modes, programmers generally switch to the more informative modes instead of the more concise ones.
+Another observation is when using the mode switching feature of \chameleon{}, we show this by presenting the starting mode and finishing mode of each task and each participant in a correlation matrix (Fig. \ref{fig:r4-mode-switching}). This observation suggests two characteristics of using multi-mode debugging tools. First, to answer \textbf{RQ2.2} programmers are roughly splitted in this matter: 53\% changing modes vs. 47\% staying in the same mode. Second, to answer \textbf{RQ2.3} when changing modes, programmers generally switch to the more informative modes instead of the more concise ones.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth,trim=0mm 5mm 0mm 5mm,clip]{images/mode-switching.pdf}
