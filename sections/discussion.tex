@@ -9,7 +9,7 @@ This paper presents the interactive type debugging tool \chameleon{} and charts 
 From the results of Study 1a, we observed that the choice of debugging tool had little effect on how fast programmers solve simple type errors. Conversely, when facing more realistic problems (longer source code, error locations more scattered) in study 1b, programmers are more effective using \chameleon{}. One explanation is that \chameleon{} reduces the amount of reading time by taking programmers more directly to the problem. Earlier studies \cite{jbara_how_2015, peitek_what_2020} showed that reading source code is generally the initial step of solving programming problems and is done in several passes. Although traditional compiler error message tools initially show fewer locations, these may be incomplete, meaning that programmers have to expand the reading span without clear guidance. In contrast, \chameleon{} shows more error locations initially. However, the completeness of error locations assures programmers which part of the source code can be safely skipped.
 
 \subsection{Forming Debugging Plans}
-From the results of Study 2, we found that programmers who use the interactive tool fix type errors faster than the ones who passively read the error output. This effect is stronger in harder tasks. We speculate that one factor of this result is that  \chameleon{} helps to develop debugging plans. We observed that when working with \chameleon{}, programmers form different debugging plans to attack the problem. Among the \textit{high} interactivity participants in user study 4, some programmers cycle through deduction steps as a guide to reading source code; some navigate to both ends of the deduction chain where types are normally grounded and concrete. In contrast, \textit{minimal} interactive participants generally form similar plans, including carefully reading the program text and manually annotating expressions based on their understanding of the program.
+From the results of Study 2, we found that programmers who use the interactive tool fix type errors faster than the ones who passively read the error output. This effect is stronger in harder tasks. We speculate that one factor of this result is that  \chameleon{} helps to develop debugging plans. We observed that when working with \chameleon{}, programmers form different debugging plans to attack the problem. Among the \textit{high} interactivity participants in user study 2, some programmers cycle through deduction steps as a guide to reading source code; some navigate to both ends of the deduction chain where types are normally grounded and concrete. In contrast, \textit{minimal} interactive participants generally form similar plans, including carefully reading the program text and manually annotating expressions based on their understanding of the program.
 
 
 \subsection{Externalize Intermediate Typing Information}
@@ -30,7 +30,7 @@ f z
     | z == '4' = True
 \end{minted}
 \vspace*{-9mm}
-\caption{A simple Haskell program with a type error}
+\caption{\chameleon{} reports an error in the expressions \texttt{f} and \texttt{z}}
 \label{listing:2}
 \end{listing}
 % Implication for research
