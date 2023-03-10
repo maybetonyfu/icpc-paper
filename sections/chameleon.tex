@@ -20,7 +20,7 @@ A common form of bias happens when a type error is reported in one expression, b
 Another form of bias is that traditional type errors are often framed as conflicts between \texttt{Expected type} and \texttt{Actual type}. This framing is standard practice in most typed languages. However, what is \texttt{expected} and what is \texttt{actual} are a side effect of different unification orders rather than the intention of the programmer. In both forms, the error message may lead programmers to falsely believe the validity of parts of code and wrongly accuse others.
 
 \subsubsection{\textbf{Traditional type errors give poor explanations}}
-When the compiler rejects a program, the internal state of type checking is the result of a complex computation. But the details of this process are hard to explain to users and are usually not reported by compilers. For the typical type error shown in Fig.~\ref{fig:motivation-example}, the evidence for the type error is gathered from the previous two declarations. These have to be rediscovered by programmers using less rigorous methods. 
+When the compiler rejects a program, the internal state of type checking is the result of a complex computation. But the details of this process are hard to explain to users and are usually not reported by compilers. For the typical type error shown in Fig.~\ref{fig:motivation-example}, the evidence for the type error is gathered from the previous declarations. These have to be rediscovered by programmers using less rigorous methods. 
 
 \subsection{Design Goals of \chameleon{}}
 Based on the limitations of traditional type errors, we give the following design requirements for \chameleon{}:
